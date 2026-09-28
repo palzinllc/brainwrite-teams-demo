@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://teams.brainwrite.in/schema/team.schema.json",
+  "title": "Brainwrite Team Manifest",
+  "type": "object",
+  "required": ["format", "version", "team"],
+  "properties": {
+    "format": { "const": "brainwrite.team" },
+    "version": { "const": 1 },
+    "team": {
+      "type": "object",
+      "required": ["name", "members", "room"],
+      "properties": {
+        "name": { "type": "string", "minLength": 1, "maxLength": 100 },
+        "description": { "type": "string", "maxLength": 2000 },
+        "members": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 50,
+          "items": {
+            "type": "object",
+            "required": ["key", "name", "title", "description", "appearance"],
+            "properties": {
+              "key": { "type": "string", "pattern": "^[a-z0-9][a-z0-9_-]*$", "maxLength": 64 },
+              "name": { "type": "string", "minLength": 1, "maxLength": 100 },
+              "title": { "type": "string", "maxLength": 200 },
+              "description": { "type": "string", "maxLength": 4000 },
+              "appearance": {
+                "type": "object",
+                "required": ["color"],
+                "properties": {
+                  "color": {
+                    "enum": ["green", "blue", "red", "orange", "purple", "cyan", "pink", "yellow", "teal", "coral"]
+                  },
+                  "mascotExpression": { "type": "string", "maxLength": 80 }
+                },
+                "additionalProperties": false
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "room": {
+          "type": "object",
+          "required": ["name", "bulletin", "defaultResponder"],
+          "properties": {
+            "name": { "type": "string", "minLength": 1, "maxLength": 100 },
+            "bulletin": { "type": "string", "maxLength": 12000 },
+            "defaultResponder": {
+              "oneOf": [
+                {
+                  "type": "object",
+                  "required": ["kind", "member"],
+                  "properties": {
+                    "kind": { "const": "member" },
+                    "member": { "type": "string" }
+                  },
+                  "additionalProperties": false
+                },
+                {
+                  "type": "object",
+                  "required": ["kind"],
+                  "properties": { "kind": { "enum": ["everyone", "mentions"] } },
+                  "additionalProperties": false
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

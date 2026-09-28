@@ -1,0 +1,12 @@
+{
+  "name": "brainwrite-teams-demo",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "validate": "node scripts/validate.mjs"
+  },
+  "dependencies": {
+    "yaml": "^2.9.0"
+  },
+  "description": "A template for a Brainwrite team: one complete example team and the library's validator."
+}

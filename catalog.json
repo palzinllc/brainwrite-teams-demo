@@ -1,0 +1,27 @@
+{
+  "format": "brainwrite.catalog",
+  "version": 1,
+  "teams": [
+    {
+      "slug": "competitor-watch",
+      "name": "Competitor Watch",
+      "summary": "Monitor public competitor changes and turn meaningful evidence into a calm decision brief.",
+      "category": "Strategy",
+      "outcome": "Know which competitor moves deserve a response and which should be ignored.",
+      "setupMinutes": 4,
+        "package": "packages/competitor-watch.md",
+      "manifest": "teams/competitor-watch/team.brainwriteteam.json",
+      "readme": "teams/competitor-watch/README.md",
+      "members": 2,
+      "skills": [
+        "teams/competitor-watch/skills/change-detection/SKILL.md",
+        "teams/competitor-watch/skills/decision-brief/SKILL.md"
+      ],
+      "requires": {
+        "apps": [
+          "Google Sheets"
+        ]
+      }
+    }
+  ]
+}
