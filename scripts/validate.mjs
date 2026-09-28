@@ -132,6 +132,9 @@ function validateConsistency(team) {
   if (skills !== playbooks) fail(`${at}: skills (${skills}) differ from package playbooks (${playbooks})`);
   const roomName = pkg.rooms?.[0]?.name;
   if (manifest.room?.name !== roomName) fail(`${at}: room is "${manifest.room?.name}" in the manifest but "${roomName}" in the package`);
+  const listed = JSON.stringify(team.requires?.apps ?? []);
+  const required = JSON.stringify((pkg.requirements?.apps ?? []).map((app) => app?.label));
+  if (listed !== required) fail(`catalog.json: ${team.slug} lists apps ${listed} but its package requires ${required}`);
 }
 
 function list(value, max) {
