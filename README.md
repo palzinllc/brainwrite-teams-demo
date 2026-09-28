@@ -27,7 +27,8 @@ teams/<team-id>/
   skills/<playbook-key>/SKILL.md      one file per playbook
 FORMAT.md                             the Markdown format, in full
 schema/team.schema.json               JSON schema for team.brainwriteteam.json
-scripts/validate.mjs                  the library's validator
+scripts/validate.mjs                  the library's validator (npm run validate)
+scripts/validate-core.mjs             its rules, shared with teams.brainwrite.in
 LICENSE                               the license your team is shared under
 ```
 
@@ -117,10 +118,15 @@ enter your repository's URL:
 
 1. **Check.** The page checks your repository. When it passes, you submit.
 2. **Pin.** Your submission is pinned to that exact commit. Pushing later
-   changes does not alter what is reviewed; submit again for a new version.
+   changes does not alter what is reviewed. To send a newer version while it
+   waits for review, submit the same repository again: the new commit replaces
+   the earlier one and is reviewed instead. A team id that is already waiting
+   for review from a different repository cannot be submitted.
 3. **Review.** A reviewer installs the team from that commit and tries it.
-4. **Import.** Approved teams are copied into the library and appear on
-   [teams.brainwrite.in](https://teams.brainwrite.in) within minutes.
+4. **Import.** Approved teams are copied into the library, with your top-level
+   `LICENSE` kept beside them as `teams/<team-id>/LICENSE`, and appear on
+   [teams.brainwrite.in](https://teams.brainwrite.in) within minutes. Keep the
+   license at the top of the repository only.
 
 By submitting, you confirm that you may share the team and that Brainwrite
 may publish it under the license in your repository.
